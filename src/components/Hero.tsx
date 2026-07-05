@@ -1,10 +1,9 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import { Code, Zap, Cpu, Globe, ArrowRight, MousePointer2 } from 'lucide-react'
 import HeroCanvas from './HeroCanvas'
-import { forwardRef } from 'react'
 
 const techIcons = [
   { icon: Code, color: '#00d4aa', label: 'Python/JS' },
