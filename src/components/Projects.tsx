@@ -1,33 +1,7 @@
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-
-const projects = [
-  {
-    title: 'Backwater Collision Avoidance',
-    tag: 'IoT · Embedded · ML',
-    description:
-      'A two-node ESP32 system where a gateway and sensor boat exchange GPS and motion data over AES-128 CBC encrypted LoRa. A FastAPI backend runs an LSTM trajectory predictor and streams live positions to a React + Leaflet dashboard for real-time collision risk.',
-    tech: ['ESP32', 'LoRa', 'FastAPI', 'LSTM', 'React', 'Leaflet'],
-    href: 'https://github.com/KARTHIKKJ369/backwater_collision_avoidance',
-  },
-  {
-    title: 'Recall',
-    tag: 'AI · NLP · Research',
-    description:
-      'A persistent semantic memory architecture for LLMs built around a three-agent pipeline — Intake, Knowledge, and Response — with hybrid BM25 and dense retrieval, plus an Ebbinghaus-inspired decay model so memories fade the way human ones do. Accepted at JETIR.',
-    tech: ['Python', 'RAG', 'BM25', 'Sentence transformers'],
-    href: undefined,
-  },
-  {
-    title: 'Hostel Management System',
-    tag: 'Full-stack',
-    description:
-      'A complete hostel administration platform covering room allocation, fee tracking, maintenance requests, and role-based admin dashboards end to end.',
-    tech: ['Node.js', 'Express', 'Supabase'],
-    href: undefined,
-  },
-]
+import { projects } from '../data'
 
 const Projects = forwardRef<HTMLElement>((_props, ref) => {
   return (

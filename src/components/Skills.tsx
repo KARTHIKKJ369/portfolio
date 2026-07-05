@@ -1,14 +1,6 @@
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
-
-const skillGroups = [
-  { title: 'Languages', items: ['Python', 'C / C++', 'TypeScript / JavaScript', 'Java', 'SQL'] },
-  { title: 'Backend & systems', items: ['FastAPI', 'Node.js / Express', 'Docker', 'Linux', 'Caddy / Nginx', 'Tailscale', 'Supabase'] },
-  { title: 'AI / ML', items: ['LSTM & sequence models', 'RAG pipelines', 'Sentence transformers', 'Local LLMs (Ollama)', 'TensorFlow Lite'] },
-  { title: 'IoT & embedded', items: ['ESP32', 'LoRa (AES-128 CBC)', 'MPU6050 / HC-SR04', 'Wokwi & PlatformIO'] },
-  { title: 'Web & frontend', items: ['React', 'Tailwind CSS'] },
-  { title: 'Data & tooling', items: ['MQTT', 'Hybrid BM25 + dense retrieval', 'Git', 'REST API design'] },
-]
+import { skillGroups } from '../data'
 
 const Skills = forwardRef<HTMLElement>((_props, ref) => {
   return (

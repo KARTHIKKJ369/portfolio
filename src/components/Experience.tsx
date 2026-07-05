@@ -1,39 +1,6 @@
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
-
-const timeline = [
-  {
-    period: 'Ongoing',
-    title: 'Intern',
-    org: 'IIIT Kottayam',
-    description: 'Working on applied research and systems problems alongside coursework.',
-  },
-  {
-    period: '2025 – Present',
-    title: 'Group 9 Mini Project — Recall',
-    org: 'Mar Athanasius College of Engineering',
-    description:
-      'Led development of a persistent semantic memory architecture for LLMs under faculty guides Prof. Nimisha P Abraham and Prof. Leya Elizabeth. Accepted at JETIR, submitted to Rajagiri.',
-  },
-  {
-    period: '2023 – Present',
-    title: 'FOSS Team Member',
-    org: 'NetX MACE',
-    description: 'Open-source contribution, community participation, and technical workshops.',
-  },
-  {
-    period: '2023 – Present',
-    title: 'Volunteer',
-    org: 'Hult Prize, MACE',
-    description: 'Event organization, team coordination, and technical support.',
-  },
-  {
-    period: '2023 – 2027',
-    title: 'B.Tech, Computer Science & Engineering',
-    org: 'Mar Athanasius College of Engineering (Autonomous), Kothamangalam',
-    description: 'KTU 2019 scheme. Currently in S6/S7.',
-  },
-]
+import { timeline } from '../data'
 
 const Experience = forwardRef<HTMLElement>((_props, ref) => {
   return (

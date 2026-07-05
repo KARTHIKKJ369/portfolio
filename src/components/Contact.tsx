@@ -1,12 +1,7 @@
 import { forwardRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, ArrowUpRight } from 'lucide-react'
-
-const socials = [
-  { icon: Mail, label: 'karthikjayan369@gmail.com', href: 'mailto:karthikjayan369@gmail.com' },
-  { icon: Github, label: 'github.com/KARTHIKKJ369', href: 'https://github.com/KARTHIKKJ369' },
-  { icon: Linkedin, label: 'linkedin.com/in/karthik-jayan', href: 'https://www.linkedin.com/in/karthik-jayan-8544ba267/' },
-]
+import { ArrowUpRight } from 'lucide-react'
+import { socials } from '../data'
 
 const Contact = forwardRef<HTMLElement>((_props, ref) => {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
