@@ -47,8 +47,8 @@ const projects = [
     title: 'Hostel Management System',
     tag: 'Full-stack',
     description:
-      'A micro project covering student and room allocation, fee tracking, and admin workflows end to end.',
-    tech: ['Full-stack'],
+      'A complete hostel administration platform covering room allocation, fee tracking, maintenance requests, and role-based admin dashboards end to end.',
+    tech: ['Node.js', 'Express', 'Supabase'],
     github: undefined,
   },
 ]

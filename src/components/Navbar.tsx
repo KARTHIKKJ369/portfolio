@@ -98,7 +98,7 @@ export default function Navbar({ scrolled, sections }: NavbarProps) {
           <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
             <Github className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)] transition-colors" />
           </a>
-          <a href="https://linkedin.com/in/karthik-jayan" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
+          <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
             <Linkedin className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)] transition-colors" />
           </a>
           <a href="mailto:karthikjayan369@gmail.com" className="px-4 py-2 glass gradient-border rounded-lg text-sm font-medium hover:bg-[var(--accent-dim)] transition-colors">
@@ -142,7 +142,7 @@ export default function Navbar({ scrolled, sections }: NavbarProps) {
                 <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
                   <Github className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)]" />
                 </a>
-                <a href="https://linkedin.com/in/karthik-jayan" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
+                <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
                   <Linkedin className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)]" />
                 </a>
                 <a href="mailto:karthikjayan369@gmail.com" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">

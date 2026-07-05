@@ -17,6 +17,18 @@ const timeline = [
       'Led development of a persistent semantic memory architecture for LLMs under faculty guides Prof. Nimisha P Abraham and Prof. Leya Elizabeth. Reached publication stage: accepted at JETIR, submitted to Rajagiri.',
   },
   {
+    period: '2023 – Present',
+    title: 'FOSS Team Member',
+    org: 'NetX MACE',
+    description: 'Open-source contribution, community participation, and technical workshops.',
+  },
+  {
+    period: '2023 – Present',
+    title: 'Volunteer',
+    org: 'Hult Prize, MACE',
+    description: 'Event organization, team coordination, and technical support.',
+  },
+  {
     period: '2023 – 2027',
     title: 'B.Tech, Computer Science & Engineering',
     org: 'Mar Athanasius College of Engineering (Autonomous), Kothamangalam',

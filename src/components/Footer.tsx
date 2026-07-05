@@ -11,7 +11,7 @@ export default function Footer() {
           <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors" aria-label="GitHub">
             <Github className="w-4 h-4 text-[var(--muted)] hover:text-[var(--accent)] transition-colors" />
           </a>
-          <a href="https://linkedin.com/in/karthik-jayan" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors" aria-label="LinkedIn">
             <Linkedin className="w-4 h-4 text-[var(--muted)] hover:text-[var(--accent)] transition-colors" />
           </a>
           <a href="mailto:karthikjayan369@gmail.com" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors" aria-label="Email">

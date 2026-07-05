@@ -13,13 +13,13 @@ const skillGroups = [
     icon: Server,
     title: 'Backend & Systems',
     color: '#0099ff',
-    items: ['FastAPI', 'Node.js', 'Docker', 'Linux', 'Caddy / Nginx', 'Tailscale'],
+    items: ['FastAPI', 'Node.js / Express', 'Docker', 'Linux', 'Caddy / Nginx', 'Tailscale', 'Supabase'],
   },
   {
     icon: BrainCircuit,
     title: 'AI / ML',
     color: '#7c3aed',
-    items: ['LSTM & sequence models', 'RAG pipelines', 'LLM orchestration', 'TensorFlow Lite'],
+    items: ['LSTM & sequence models', 'RAG pipelines', 'Sentence transformers & embeddings', 'Local LLMs (Ollama)', 'TensorFlow Lite'],
   },
   {
     icon: Cpu,

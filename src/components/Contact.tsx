@@ -5,7 +5,7 @@ import { Mail, Github, Linkedin, Send } from 'lucide-react'
 const socials = [
   { icon: Mail, label: 'karthikjayan369@gmail.com', href: 'mailto:karthikjayan369@gmail.com' },
   { icon: Github, label: 'github.com/KARTHIKKJ369', href: 'https://github.com/KARTHIKKJ369' },
-  { icon: Linkedin, label: 'linkedin.com/in/karthik-jayan', href: 'https://linkedin.com/in/karthik-jayan' },
+  { icon: Linkedin, label: 'linkedin.com/in/karthik-jayan', href: 'https://www.linkedin.com/in/karthik-jayan-8544ba267/' },
 ]
 
 const Contact = forwardRef<HTMLElement>((_props, ref) => {
