@@ -1,9 +1,10 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import { Code, Zap, Cpu, Globe, ArrowRight, MousePointer2 } from 'lucide-react'
 import HeroCanvas from './HeroCanvas'
+import { forwardRef } from 'react'
 
 const techIcons = [
   { icon: Code, color: '#00d4aa', label: 'Python/JS' },
@@ -12,8 +13,9 @@ const techIcons = [
   { icon: Globe, color: '#f59e0b', label: 'Backend' },
 ]
 
-export default function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null)
+
+const Hero = forwardRef<HTMLElement>((_props, ref) => {
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,7 +28,14 @@ export default function Hero() {
 
   return (
     <section
-      ref={sectionRef}
+      ref={(node) => {
+        (sectionRef as React.MutableRefObject<HTMLElement | null>).current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+        }
+      }}
       id="hero"
       className="min-h-screen flex items-center justify-center relative reveal"
     >
@@ -147,8 +156,8 @@ export default function Hero() {
                 <Html
                   transform
                   position={[0, 0, 0]}
-                  scaleFactor={10}
-                  sprites
+                  distanceFactor={10}
+                  sprite
                   zIndexRange={[100, 200]}
                 >
                   <div className="w-96 h-96 glass-strong rounded-3xl p-8 flex flex-col items-center justify-center relative overflow-hidden">
@@ -191,4 +200,6 @@ export default function Hero() {
       </div>
     </section>
   )
-}
+})
+
+export default Hero

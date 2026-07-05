@@ -1,4 +1,4 @@
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 
@@ -81,7 +81,7 @@ function ParticleField() {
       positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
       positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta)
       positions[i * 3 + 2] = radius * Math.cos(phi)
-      phi)
+
       const color = color1.clone().lerp(color2, Math.random())
       colors[i * 3] = color.r
       colors[i * 3 + 1] = color.g
