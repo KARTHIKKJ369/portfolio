@@ -1,87 +1,46 @@
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
-import { Code2, Server, BrainCircuit, Cpu, LayoutGrid, Database } from 'lucide-react'
 
 const skillGroups = [
-  {
-    icon: Code2,
-    title: 'Languages',
-    color: '#00d4aa',
-    items: ['Python', 'C / C++', 'TypeScript / JavaScript', 'Java'],
-  },
-  {
-    icon: Server,
-    title: 'Backend & Systems',
-    color: '#0099ff',
-    items: ['FastAPI', 'Node.js / Express', 'Docker', 'Linux', 'Caddy / Nginx', 'Tailscale', 'Supabase'],
-  },
-  {
-    icon: BrainCircuit,
-    title: 'AI / ML',
-    color: '#7c3aed',
-    items: ['LSTM & sequence models', 'RAG pipelines', 'Sentence transformers & embeddings', 'Local LLMs (Ollama)', 'TensorFlow Lite'],
-  },
-  {
-    icon: Cpu,
-    title: 'IoT & Embedded',
-    color: '#f59e0b',
-    items: ['ESP32', 'LoRa (AES-128 CBC)', 'MPU6050 / HC-SR04', 'Wokwi & PlatformIO'],
-  },
-  {
-    icon: LayoutGrid,
-    title: 'Web & Frontend',
-    color: '#00d4aa',
-    items: ['React', 'Tailwind CSS', 'Three.js', 'Framer Motion'],
-  },
-  {
-    icon: Database,
-    title: 'Data & Tooling',
-    color: '#0099ff',
-    items: ['MQTT', 'Hybrid BM25 + dense retrieval', 'Git', 'REST API design'],
-  },
+  { title: 'Languages', items: ['Python', 'C / C++', 'TypeScript / JavaScript', 'Java', 'SQL'] },
+  { title: 'Backend & systems', items: ['FastAPI', 'Node.js / Express', 'Docker', 'Linux', 'Caddy / Nginx', 'Tailscale', 'Supabase'] },
+  { title: 'AI / ML', items: ['LSTM & sequence models', 'RAG pipelines', 'Sentence transformers', 'Local LLMs (Ollama)', 'TensorFlow Lite'] },
+  { title: 'IoT & embedded', items: ['ESP32', 'LoRa (AES-128 CBC)', 'MPU6050 / HC-SR04', 'Wokwi & PlatformIO'] },
+  { title: 'Web & frontend', items: ['React', 'Tailwind CSS'] },
+  { title: 'Data & tooling', items: ['MQTT', 'Hybrid BM25 + dense retrieval', 'Git', 'REST API design'] },
 ]
 
 const Skills = forwardRef<HTMLElement>((_props, ref) => {
   return (
-    <section id="skills" ref={ref} className="relative py-24 md:py-32">
+    <section id="skills" ref={ref} className="py-24 md:py-28">
       <div className="container px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <span className="mono text-sm text-[var(--accent)] tracking-widest uppercase">Skills</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
-            The <span className="gradient-text">stack</span> I reach for.
-          </h2>
+          <span className="mono text-xs text-[var(--muted)] tracking-widest uppercase">02 · Skills</span>
+          <h2 className="text-3xl md:text-4xl font-semibold mt-3">The stack I reach for.</h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skillGroups.map(({ icon: Icon, title, color, items }, i) => (
+        <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
+          {skillGroups.map((group, i) => (
             <motion.div
-              key={title}
-              initial={{ opacity: 0, y: 20 }}
+              key={group.title}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="glass rounded-2xl p-6 hover:bg-[var(--glass-strong)] transition-all"
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="py-4 border-t border-[var(--border)]"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2.5 rounded-xl" style={{ background: `${color}22` }}>
-                  <Icon className="w-5 h-5" style={{ color }} />
-                </div>
-                <h3 className="font-semibold text-lg">{title}</h3>
-              </div>
-              <ul className="space-y-2">
-                {items.map((item) => (
-                  <li key={item} className="text-sm text-[var(--muted)] flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full" style={{ background: color }} />
-                    {item}
-                  </li>
+              <h3 className="mono text-sm text-[var(--muted)] mb-3">{group.title}</h3>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span key={item} className="tag">{item}</span>
                 ))}
-              </ul>
+              </div>
             </motion.div>
           ))}
         </div>

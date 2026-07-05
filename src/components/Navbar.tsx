@@ -51,57 +51,45 @@ export default function Navbar({ scrolled, sections }: NavbarProps) {
   return (
     <motion.nav
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-strong py-4' : 'py-6 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        scrolled ? 'bg-[var(--bg)]/90 backdrop-blur-sm border-[var(--border)] py-4' : 'py-6 border-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
     >
       <div className="container flex items-center justify-between px-4">
-        <motion.a
-          href="#hero"
-          className="font-bold text-xl gradient-text tracking-tight"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
+        <a href="#hero" className="mono font-semibold text-lg tracking-tight">
           KJ
-        </motion.a>
+        </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <motion.button
+            <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className={`relative px-2 py-1 text-sm font-medium transition-colors ${
-                activeSection === item.id ? 'text-[var(--accent)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
+              className={`relative px-1 py-1 text-sm font-medium transition-colors ${
+                activeSection === item.id ? 'text-[var(--fg)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
               }`}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
             >
               {item.label}
-              <AnimatePresence>
-                {activeSection === item.id && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--accent)]"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    exit={{ scaleX: 0 }}
-                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </AnimatePresence>
-            </motion.button>
+              {activeSection === item.id && (
+                <motion.div
+                  layoutId="nav-underline"
+                  className="absolute bottom-[-4px] left-0 right-0 h-px bg-[var(--fg)]"
+                />
+              )}
+            </button>
           ))}
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
-            <Github className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)] transition-colors" />
+          <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors">
+            <Github className="w-5 h-5" />
           </a>
-          <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
-            <Linkedin className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)] transition-colors" />
+          <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors">
+            <Linkedin className="w-5 h-5" />
           </a>
-          <a href="mailto:karthikjayan369@gmail.com" className="px-4 py-2 glass gradient-border rounded-lg text-sm font-medium hover:bg-[var(--accent-dim)] transition-colors">
+          <a href="mailto:karthikjayan369@gmail.com" className="btn-secondary px-4 py-2 text-sm">
             Contact
           </a>
         </div>
@@ -118,38 +106,35 @@ export default function Navbar({ scrolled, sections }: NavbarProps) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="md:hidden glass-strong border-t border-[var(--glass-border)] px-4 pb-6"
+            className="md:hidden bg-[var(--bg)] border-t border-[var(--border)] px-4 pb-6"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
           >
             <div className="flex flex-col gap-4 pt-4">
               {navItems.map((item) => (
-                <motion.button
+                <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className={`text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                    activeSection === item.id
-                      ? 'bg-[var(--accent-dim)] text-[var(--accent)]'
-                      : 'text-[var(--muted)] hover:text-[var(--fg)] hover:bg-[var(--glass)]'
+                  className={`text-left px-2 py-2 font-medium transition-colors ${
+                    activeSection === item.id ? 'text-[var(--fg)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
                   }`}
-                  whileTap={{ scale: 0.98 }}
                 >
                   {item.label}
-                </motion.button>
+                </button>
               ))}
-              <div className="flex gap-4 pt-4 border-t border-[var(--glass-border)]">
-                <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
-                  <Github className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)]" />
+              <div className="flex gap-4 pt-4 border-t border-[var(--border)]">
+                <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                  <Github className="w-5 h-5" />
                 </a>
-                <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
-                  <Linkedin className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)]" />
+                <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                  <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="mailto:karthikjayan369@gmail.com" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
-                  <Mail className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)]" />
+                <a href="mailto:karthikjayan369@gmail.com" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                  <Mail className="w-5 h-5" />
                 </a>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-[var(--glass)] rounded-lg transition-colors">
-                  <FileText className="w-5 h-5 text-[var(--muted)] hover:text-[var(--accent)]" />
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                  <FileText className="w-5 h-5" />
                 </a>
               </div>
             </div>

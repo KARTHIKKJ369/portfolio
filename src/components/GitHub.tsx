@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
-import { Github, GitBranch, Star } from 'lucide-react'
+import { ArrowUpRight, GitBranch } from 'lucide-react'
 
 const featuredRepos = [
   {
@@ -10,91 +10,81 @@ const featuredRepos = [
   },
   {
     name: 'portfolio',
-    description: 'This site — React, Three.js, and Tailwind.',
+    description: 'This site — React, TypeScript, and Tailwind.',
     url: 'https://github.com/KARTHIKKJ369/portfolio',
   },
 ]
 
 const GitHub = forwardRef<HTMLElement>((_props, ref) => {
   return (
-    <section id="github" ref={ref} className="relative py-24 md:py-32">
+    <section id="github" ref={ref} className="py-24 md:py-28">
       <div className="container px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <span className="mono text-sm text-[var(--accent)] tracking-widest uppercase">GitHub</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
-            Mostly <span className="gradient-text">public</span> by habit.
-          </h2>
+          <span className="mono text-xs text-[var(--muted)] tracking-widest uppercase">05 · GitHub</span>
+          <h2 className="text-3xl md:text-4xl font-semibold mt-3">Mostly public by habit.</h2>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid md:grid-cols-2 gap-4 mb-8"
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="grid md:grid-cols-2 gap-4 mb-10"
         >
           <img
-            src="https://github-readme-stats.vercel.app/api?username=KARTHIKKJ369&show_icons=true&hide_border=true&bg_color=00000000&title_color=00d4aa&icon_color=0099ff&text_color=7a7a8a"
+            src="https://github-readme-stats.vercel.app/api?username=KARTHIKKJ369&show_icons=true&hide_border=true&bg_color=00000000&title_color=f2f2f4&icon_color=5b6ef0&text_color=8a8a92"
             alt="Karthik's GitHub stats"
-            className="w-full rounded-2xl glass"
+            className="w-full rounded-2xl card"
             loading="lazy"
           />
           <img
-            src="https://github-readme-stats.vercel.app/api/top-langs/?username=KARTHIKKJ369&layout=compact&hide_border=true&bg_color=00000000&title_color=00d4aa&text_color=7a7a8a"
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=KARTHIKKJ369&layout=compact&hide_border=true&bg_color=00000000&title_color=f2f2f4&text_color=8a8a92"
             alt="Karthik's most used languages"
-            className="w-full rounded-2xl glass"
+            className="w-full rounded-2xl card"
             loading="lazy"
           />
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5 mb-10">
+        <div className="max-w-2xl mb-10">
           {featuredRepos.map((repo, i) => (
             <motion.a
               key={repo.name}
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="glass rounded-2xl p-6 hover:bg-[var(--glass-strong)] transition-all group"
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="group flex items-center justify-between gap-4 py-4 border-t border-[var(--border)] last:border-b"
             >
-              <div className="flex items-center gap-2 mb-3">
-                <GitBranch className="w-4 h-4 text-[var(--accent)]" />
-                <span className="font-mono text-sm font-medium group-hover:text-[var(--accent)] transition-colors">
-                  {repo.name}
-                </span>
+              <div className="flex items-start gap-3">
+                <GitBranch className="w-4 h-4 text-[var(--muted)] mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="font-mono text-sm font-medium">{repo.name}</span>
+                  <p className="text-sm text-[var(--muted)] mt-0.5">{repo.description}</p>
+                </div>
               </div>
-              <p className="text-sm text-[var(--muted)] leading-relaxed">{repo.description}</p>
+              <ArrowUpRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--fg)] transition-colors flex-shrink-0" />
             </motion.a>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center"
+        <a
+          href="https://github.com/KARTHIKKJ369"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
         >
-          <a
-            href="https://github.com/KARTHIKKJ369"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 glass gradient-border rounded-xl font-medium hover:bg-[var(--accent-dim)] transition-all"
-          >
-            <Github className="w-4 h-4" />
-            @KARTHIKKJ369
-            <Star className="w-4 h-4 text-[var(--accent)]" />
-          </a>
-        </motion.div>
+          @KARTHIKKJ369 on GitHub
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
       </div>
     </section>
   )

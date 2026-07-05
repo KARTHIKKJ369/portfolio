@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { Stars } from '@react-three/drei'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
@@ -10,7 +8,6 @@ import GitHub from './components/GitHub'
 import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Scene from './components/Scene'
 
 function App() {
   const [scrolled, setScrolled] = useState(false)
@@ -25,15 +22,6 @@ function App() {
   return (
     <div className="min-h-screen">
       <Navbar scrolled={scrolled} sections={sectionsRef.current} />
-      
-      <Canvas
-        className="fixed inset-0 -z-10 pointer-events-none"
-        camera={{ position: [0, 0, 50], fov: 50 }}
-        style={{ touchAction: 'none' }}
-      >
-        <Scene />
-        <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} />
-      </Canvas>
 
       <main>
         <Hero ref={el => { sectionsRef.current.hero = el; }} />

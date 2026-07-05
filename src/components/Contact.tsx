@@ -1,6 +1,6 @@
 import { forwardRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Send } from 'lucide-react'
+import { Mail, Github, Linkedin, ArrowUpRight } from 'lucide-react'
 
 const socials = [
   { icon: Mail, label: 'karthikjayan369@gmail.com', href: 'mailto:karthikjayan369@gmail.com' },
@@ -22,73 +22,56 @@ const Contact = forwardRef<HTMLElement>((_props, ref) => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-24 md:py-32">
+    <section id="contact" ref={ref} className="py-24 md:py-28">
       <div className="container px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <span className="mono text-sm text-[var(--accent)] tracking-widest uppercase">Contact</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
-            Let's <span className="gradient-text">build</span> something.
-          </h2>
-          <p className="text-[var(--muted)] mt-4">
+          <span className="mono text-xs text-[var(--muted)] tracking-widest uppercase">06 · Contact</span>
+          <h2 className="text-3xl md:text-4xl font-semibold mt-3">Let's build something.</h2>
+          <p className="text-[var(--muted)] mt-3 max-w-lg">
             Open to internships, collaborations, or just talking shop about IoT and RAG systems.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="glass rounded-2xl p-7 space-y-5"
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="card p-6 space-y-4"
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2 text-[var(--muted)]">Name</label>
+              <label htmlFor="name" className="block text-xs mono text-[var(--muted)] mb-2">Name</label>
               <input
-                id="name"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
+                id="name" name="name" value={form.name} onChange={handleChange}
                 placeholder="Your name"
-                className="w-full px-4 py-3 rounded-xl bg-transparent border border-[var(--glass-border)] focus:border-[var(--accent)] outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-transparent border border-[var(--border)] focus:border-[var(--accent)] outline-none transition-colors text-sm"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2 text-[var(--muted)]">Email</label>
+              <label htmlFor="email" className="block text-xs mono text-[var(--muted)] mb-2">Email</label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
+                id="email" name="email" type="email" value={form.email} onChange={handleChange}
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 rounded-xl bg-transparent border border-[var(--glass-border)] focus:border-[var(--accent)] outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-transparent border border-[var(--border)] focus:border-[var(--accent)] outline-none transition-colors text-sm"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2 text-[var(--muted)]">Message</label>
+              <label htmlFor="message" className="block text-xs mono text-[var(--muted)] mb-2">Message</label>
               <textarea
-                id="message"
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                rows={4}
-                placeholder="What's on your mind?"
-                className="w-full px-4 py-3 rounded-xl bg-transparent border border-[var(--glass-border)] focus:border-[var(--accent)] outline-none transition-colors resize-none"
+                id="message" name="message" value={form.message} onChange={handleChange}
+                rows={4} placeholder="What's on your mind?"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-transparent border border-[var(--border)] focus:border-[var(--accent)] outline-none transition-colors resize-none text-sm"
               />
             </div>
-            <button
-              onClick={handleSubmit}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 glass gradient-border rounded-xl font-semibold hover:bg-[var(--accent-dim)] transition-all"
-            >
+            <button onClick={handleSubmit} className="btn-primary w-full py-3 text-sm">
               Send message
-              <Send className="w-4 h-4" />
             </button>
             <p className="text-xs text-[var(--muted)] text-center">
               Opens your email client with this pre-filled — nothing is stored here.
@@ -96,11 +79,10 @@ const Contact = forwardRef<HTMLElement>((_props, ref) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-4"
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             {socials.map(({ icon: Icon, label, href }) => (
               <a
@@ -108,14 +90,13 @@ const Contact = forwardRef<HTMLElement>((_props, ref) => {
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 glass rounded-2xl p-5 hover:bg-[var(--glass-strong)] transition-all group"
+                className="group flex items-center justify-between gap-3 py-4 border-t border-[var(--border)] last:border-b"
               >
-                <div className="w-11 h-11 rounded-xl glass-strong flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-5 h-5 text-[var(--accent)]" />
+                <div className="flex items-center gap-3">
+                  <Icon className="w-4 h-4 text-[var(--muted)]" />
+                  <span className="font-mono text-sm group-hover:text-[var(--accent)] transition-colors">{label}</span>
                 </div>
-                <span className="font-medium mono text-sm group-hover:text-[var(--accent)] transition-colors truncate">
-                  {label}
-                </span>
+                <ArrowUpRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--fg)] transition-colors" />
               </a>
             ))}
           </motion.div>
