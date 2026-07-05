@@ -4,7 +4,7 @@ import { Menu, X, Github, Linkedin, Mail, FileText } from 'lucide-react'
 
 interface NavbarProps {
   scrolled: boolean
-  sections: Record<string, HTMLDivElement | null>
+  sections: Record<string, HTMLElement | null>
 }
 
 const navItems = [
@@ -20,7 +20,7 @@ const navItems = [
 export default function Navbar({ scrolled, sections }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
-  const navRef = useRef<HTMLNavElement>(null)
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
