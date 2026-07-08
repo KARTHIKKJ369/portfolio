@@ -83,10 +83,10 @@ export default function Navbar({ scrolled, sections }: NavbarProps) {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors">
+          <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors" aria-label="GitHub" title="GitHub">
             <Github className="w-5 h-5" />
           </a>
-          <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors">
+          <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors" aria-label="LinkedIn" title="LinkedIn">
             <Linkedin className="w-5 h-5" />
           </a>
           <a href="mailto:karthikjayan369@gmail.com" className="btn-secondary px-4 py-2 text-sm">
@@ -124,16 +124,16 @@ export default function Navbar({ scrolled, sections }: NavbarProps) {
                 </button>
               ))}
               <div className="flex gap-4 pt-4 border-t border-[var(--border)]">
-                <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]" aria-label="GitHub" title="GitHub">
                   <Github className="w-5 h-5" />
                 </a>
-                <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                <a href="https://www.linkedin.com/in/karthik-jayan-8544ba267/" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]" aria-label="LinkedIn" title="LinkedIn">
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="mailto:karthikjayan369@gmail.com" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                <a href="mailto:karthikjayan369@gmail.com" className="text-[var(--muted)] hover:text-[var(--fg)]" aria-label="Email" title="Email">
                   <Mail className="w-5 h-5" />
                 </a>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]">
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--fg)]" aria-label="Resume" title="Resume">
                   <FileText className="w-5 h-5" />
                 </a>
               </div>

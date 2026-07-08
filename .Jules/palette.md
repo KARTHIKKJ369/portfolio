@@ -1,0 +1,3 @@
+## 2025-02-18 - Inconsistent ARIA labels for Social Links
+**Learning:** Found an accessibility issue where the `Footer` component had proper `aria-label`s on icon-only links (GitHub, LinkedIn, Email), but the `Navbar` component did not. This inconsistency means screen reader users would have a degraded experience when navigating from the top of the page compared to the bottom.
+**Action:** Always verify that similar UI patterns (like icon-only social links) have consistent accessibility attributes across all components (e.g., both headers and footers). Added `aria-label` and `title` to the `Navbar` links to match and improve upon the `Footer`'s accessibility.
