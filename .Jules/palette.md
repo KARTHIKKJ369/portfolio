@@ -1,0 +1,3 @@
+## 2024-03-20 - Missing aria-labels in Navbar
+**Learning:** Accessibility attributes can easily be missed across different parts of an application. In this codebase, while the footer had `aria-label` attributes on icon links, the mobile and desktop navbars lacked them. This causes navigation areas, which screen reader users frequently interact with, to announce vague link names like "unlabelled image" or "link to nowhere."
+**Action:** Always verify that every icon-only interactive element has an `aria-label`, paying special attention to different variants of a component (e.g., checking both mobile and desktop menus, not just one).
