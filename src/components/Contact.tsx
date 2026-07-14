@@ -59,16 +59,16 @@ export default function Contact() {
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-xs mono text-[var(--muted)] mb-2">Name</label>
+                <label htmlFor="name" className="block text-xs mono text-[var(--muted)] mb-2">Name <span className="text-[var(--accent)]" aria-hidden="true">*</span></label>
                 <input id="name" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required className="field" />
               </div>
               <div>
-                <label htmlFor="email" className="block text-xs mono text-[var(--muted)] mb-2">Email</label>
+                <label htmlFor="email" className="block text-xs mono text-[var(--muted)] mb-2">Email <span className="text-[var(--accent)]" aria-hidden="true">*</span></label>
                 <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required className="field" />
               </div>
             </div>
             <div>
-              <label htmlFor="message" className="block text-xs mono text-[var(--muted)] mb-2">Message</label>
+              <label htmlFor="message" className="block text-xs mono text-[var(--muted)] mb-2">Message <span className="text-[var(--accent)]" aria-hidden="true">*</span></label>
               <textarea id="message" name="message" value={form.message} onChange={handleChange} rows={4} placeholder="What's on your mind?" required className="field resize-none" />
             </div>
             <button type="submit" disabled={!isValid} className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2">
