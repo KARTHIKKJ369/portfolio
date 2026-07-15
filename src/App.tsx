@@ -21,9 +21,16 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-[var(--bg-elevated)] focus:text-[var(--fg)] focus:rounded-lg focus:border focus:border-[var(--border)] focus:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+      >
+        Skip to content
+      </a>
+
       <Navbar scrolled={scrolled} />
 
-      <main>
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <Hero />
         <About />
         <Skills />
