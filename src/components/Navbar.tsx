@@ -70,6 +70,7 @@ export default function Navbar({ scrolled }: NavbarProps) {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
+              aria-current={activeSection === item.id ? 'true' : undefined}
               className={`relative px-1 py-1 text-sm font-medium transition-colors ${
                 activeSection === item.id ? 'text-[var(--fg)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
               }`}
@@ -131,6 +132,7 @@ export default function Navbar({ scrolled }: NavbarProps) {
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
+                  aria-current={activeSection === item.id ? 'true' : undefined}
                   className={`text-left px-2 py-2 font-medium transition-colors ${
                     activeSection === item.id ? 'text-[var(--fg)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
                   }`}
