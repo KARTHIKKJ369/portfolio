@@ -1,35 +1,35 @@
-import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
+import Reveal from './Reveal'
 import { timeline } from '../data'
 
-const Experience = forwardRef<HTMLElement>((_props, ref) => {
-  return (
-    <section id="experience" ref={ref} className="py-24 md:py-28">
-      <div className="container px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <span className="mono text-xs text-[var(--muted)] tracking-widest uppercase">04 · Experience</span>
-          <h2 className="text-3xl md:text-4xl font-semibold mt-3">Where the time's gone.</h2>
-        </motion.div>
+const ease = [0.23, 1, 0.32, 1] as const
 
-        <div className="max-w-2xl">
+export default function Experience() {
+  return (
+    <section id="experience" className="py-24">
+      <div className="container px-4">
+        <Reveal amount={0.5}>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-14">Where the time's gone.</h2>
+        </Reveal>
+
+        <div className="max-w-2xl relative">
+          <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border)]" aria-hidden="true" />
           {timeline.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -14 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="grid sm:grid-cols-[110px_1fr] gap-2 sm:gap-6 py-5 border-t border-[var(--border)] last:border-b"
+              transition={{ duration: 0.5, delay: i * 0.07, ease }}
+              whileHover={{ x: 6 }}
+              className="relative grid grid-cols-[24px_1fr] gap-5 py-6"
             >
-              <span className="mono text-xs text-[var(--muted)] pt-0.5">{item.period}</span>
+              <span className="relative flex items-start justify-center pt-1.5">
+                <span className="w-[11px] h-[11px] rounded-full bg-[var(--bg)] border-2 border-[var(--accent)] z-10" />
+              </span>
               <div>
-                <h3 className="font-semibold">{item.title}</h3>
+                <span className="mono text-xs text-[var(--muted)]">{item.period}</span>
+                <h3 className="font-semibold mt-1">{item.title}</h3>
                 <p className="text-sm text-[var(--muted)] mb-1.5">{item.org}</p>
                 <p className="text-sm text-[var(--muted)] leading-relaxed">{item.description}</p>
               </div>
@@ -39,6 +39,4 @@ const Experience = forwardRef<HTMLElement>((_props, ref) => {
       </div>
     </section>
   )
-})
-
-export default Experience
+}

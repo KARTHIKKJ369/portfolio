@@ -1,0 +1,669 @@
+==================== About ====================
+import { motion } from 'framer-motion'
+import Reveal from './Reveal'
+import Terminal from './Terminal'
+import { focusAreas } from '../data'
+
+const journey = [
+  { year: '2023', label: 'Started B.Tech CSE at MACE' },
+  { year: '2024', label: 'Started building AI-powered applications' },
+  { year: '2025', label: 'Shipped Recall — persistent LLM memory' },
+  { year: '2026', label: 'Research internship, IIIT Kottayam' },
+]
+
+export default function About() {
+  return (
+    <section id="about" className="py-24">
+      <div className="container px-4">
+        <Reveal direction="left" amount={0.5}>
+          <h2 className="text-3xl md:text-4xl font-semibold leading-tight max-w-2xl mb-4">
+            Not a resume — <span className="accent-text">who I actually am</span>.
+          </h2>
+          <p className="text-[var(--muted)] max-w-xl mb-14 leading-relaxed">
+            I'm a Computer Science undergraduate who likes taking ideas all the way from a breadboard
+            to a browser tab. Most of what I build starts as a question I want answered for myself —
+            and turns into a working system with sensors, servers, and a dashboard somewhere in the middle.
+          </p>
+        </Reveal>
+
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-14 items-start">
+          {/* Terminal centerpiece — try "help" for a list of commands. */}
+          <Reveal direction="scale" delay={0.05} className="h-full">
+            <Terminal />
+
+            <div className="flex flex-wrap gap-2 mt-6">
+              {focusAreas.map((area) => (
+                <span key={area} className="tag">{area}</span>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal direction="right" delay={0.1}>
+            <div className="space-y-0">
+              {journey.map((item, i) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.45, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
+                  className="grid grid-cols-[90px_1fr] gap-4 py-5 border-t border-[var(--border)] last:border-b"
+                >
+                  <span className="mono text-sm text-[var(--muted)] pt-0.5">{item.year}</span>
+                  <p className="text-[var(--fg)]">{item.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}==================== Education ====================
+import { motion } from 'framer-motion'
+import Reveal from './Reveal'
+import { education } from '../data'
+
+const ease = [0.23, 1, 0.32, 1] as const
+
+export default function Education() {
+  return (
+    <section id="education" className="py-24">
+      <div className="container px-4">
+        <Reveal amount={0.5}>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-14">Education.</h2>
+        </Reveal>
+
+        <div className="max-w-3xl space-y-4">
+          {education.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, delay: i * 0.08, ease }}
+              className="card p-6 sm:p-8 grid sm:grid-cols-[1fr_auto] gap-6 sm:items-start"
+            >
+              <div>
+                <span className="mono text-xs text-[var(--muted)]">{item.period}</span>
+                <h3 className="text-lg font-semibold mt-1">{item.title}</h3>
+                <p className="text-sm text-[var(--muted)] mt-1">{item.org}</p>
+                <p className="text-sm text-[var(--muted)] mt-2 leading-relaxed">{item.description}</p>
+              </div>
+              <div className="flex sm:flex-col items-center sm:items-end gap-2 sm:gap-0.5 sm:text-right pt-4 sm:pt-0 border-t sm:border-t-0 sm:border-l border-[var(--border)] sm:pl-6">
+                <div className="mono text-2xl font-semibold accent-text">{item.stat}</div>
+                <div className="text-xs text-[var(--muted)] uppercase tracking-wide">{item.statLabel}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+==================== Skills ====================
+import { motion } from 'framer-motion'
+import { Cpu, Server, BrainCircuit, Globe, Cloud } from 'lucide-react'
+import Reveal from './Reveal'
+import { skillGroups } from '../data'
+
+const icons: Record<string, typeof Cpu> = {
+  'AI Systems': BrainCircuit,
+  Frontend: Globe,
+  Backend: Server,
+  'AI / ML': Cpu,
+  'Cloud & Tools': Cloud,
+}
+
+const sizeClasses: Record<string, string> = {
+  large: 'sm:col-span-1 lg:col-span-2',
+  wide: 'sm:col-span-2 lg:col-span-4',
+  medium: 'sm:col-span-1 lg:col-span-2',
+}
+
+export default function Skills() {
+  return (
+    <section id="skills" className="py-24">
+      <div className="container px-4">
+        <Reveal amount={0.5} className="flex items-end justify-between mb-12 flex-wrap gap-2">
+          <h2 className="text-3xl md:text-4xl font-semibold">What I reach for.</h2>
+          <span className="mono text-xs text-[var(--muted)]">
+            {skillGroups.reduce((s, g) => s + g.items.length, 0)} tools · {skillGroups.length} areas
+          </span>
+        </Reveal>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {skillGroups.map((group, i) => {
+            const Icon = icons[group.title] ?? Cpu
+            return (
+              <motion.div
+                key={group.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.23, 1, 0.32, 1] }}
+                whileHover={{ y: -4 }}
+                className={`card card-hover p-8 ${sizeClasses[group.size]}`}
+              >
+                <motion.div whileHover={{ rotate: -6, scale: 1.08 }} transition={{ duration: 0.3 }} className="inline-block">
+                  <Icon className="w-5 h-5 text-[var(--accent)] mb-4" />
+                </motion.div>
+                <h3 className="font-medium mb-4">{group.title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span key={item} className="tag">{item}</span>
+                  ))}
+                </div>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}==================== Projects ====================
+import { motion } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
+import Reveal from './Reveal'
+import ProjectVisual from './ProjectVisual'
+import { projects } from '../data'
+
+const ease = [0.23, 1, 0.32, 1] as const
+
+export default function Projects() {
+  const featured = projects.find((p) => p.featured) ?? projects[0]
+  const rest = projects.filter((p) => p !== featured)
+
+  return (
+    <section id="projects" className="py-24">
+      <div className="container px-4">
+        <Reveal amount={0.5} className="mb-16 max-w-xl">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-3">Things I've shipped.</h2>
+          <p className="text-[var(--muted)] text-sm">
+            {projects.length} projects, ranging from embedded firmware to LLM pipelines.
+          </p>
+        </Reveal>
+
+        {/* Featured project — large, distinct treatment */}
+        <Reveal direction="scale" amount={0.2} className="mb-20">
+          <a
+            href={featured.href}
+            target={featured.href ? '_blank' : undefined}
+            rel="noopener noreferrer"
+            className="group grid lg:grid-cols-2 gap-0 card card-hover overflow-hidden"
+          >
+            <div className="aspect-[4/3] lg:aspect-auto">
+              <ProjectVisual index={0} />
+            </div>
+            <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <span className="mono text-xs text-[var(--muted)] uppercase tracking-wide mb-3">
+                {featured.tag} · Hero project
+              </span>
+              <h3 className="text-2xl lg:text-3xl font-semibold mb-4 flex items-center gap-2">
+                {featured.title}
+                {featured.href && (
+                  <ArrowUpRight className="w-5 h-5 text-[var(--muted)] group-hover:text-[var(--fg)] transition-colors" />
+                )}
+              </h3>
+              <div className="space-y-3 mb-5">
+                <p className="text-sm text-[var(--muted)]"><span className="text-[var(--fg)] font-medium">Problem — </span>{featured.problem}</p>
+                <p className="text-sm text-[var(--muted)]"><span className="text-[var(--fg)] font-medium">Solution — </span>{featured.solution}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {featured.tech.map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        </Reveal>
+
+        {/* Remaining projects — alternating layout, no two rows the same */}
+        <div className="space-y-16">
+          {rest.map((project, i) => {
+            const reversed = i % 2 === 1
+            const Wrapper = project.href ? motion.a : motion.div
+            return (
+              <Wrapper
+                key={project.title}
+                {...(project.href ? { href: project.href, target: '_blank', rel: 'noopener noreferrer' } : {})}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease }}
+                className={`group grid lg:grid-cols-[1fr_1.2fr] gap-8 items-center ${reversed ? 'lg:[&>*:first-child]:order-2' : ''}`}
+              >
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--border)]">
+                  <ProjectVisual index={i + 1} />
+                </div>
+                <div>
+                  <span className="mono text-xs text-[var(--muted)] uppercase tracking-wide">{project.tag}</span>
+                  <h3 className="text-xl font-semibold mt-2 mb-3 flex items-center gap-1.5">
+                    {project.title}
+                    {project.href && (
+                      <ArrowUpRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--fg)] transition-colors" />
+                    )}
+                  </h3>
+                  <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">{project.solution}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </Wrapper>
+            )
+          })}
+        </div>
+
+        <Reveal delay={0.1} className="mt-16">
+          <a
+            href="https://github.com/KARTHIKKJ369"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)] transition-colors"
+          >
+            See everything on GitHub
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+==================== Contact ====================
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { ArrowUpRight, Check } from 'lucide-react'
+import Reveal from './Reveal'
+import { socials } from '../data'
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [sent, setSent] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const isValid = form.name.trim() && /\S+@\S+\.\S+/.test(form.email) && form.message.trim()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!isValid) return
+
+    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`)
+    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`)
+    window.location.href = `mailto:karthikjayan369@gmail.com?subject=${subject}&body=${body}`
+
+    setSent(true)
+    setTimeout(() => setSent(false), 2500)
+  }
+
+  return (
+    <section id="contact" className="py-24">
+      <div className="container px-4 max-w-3xl mx-auto text-center">
+        <Reveal direction="scale" amount={0.5}>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4">Let's build something.</h2>
+          <p className="text-[var(--muted)] max-w-lg mx-auto mb-10">
+            Open to internships, collaborations, or just talking shop about AI systems and RAG systems.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.05} amount={0.3} className="flex flex-wrap justify-center gap-3 mb-10">
+          {socials.map(({ icon: Icon, label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
+            >
+              <Icon className="w-4 h-4" />
+              {label}
+            </a>
+          ))}
+        </Reveal>
+
+        <Reveal delay={0.1} amount={0.3}>
+          <motion.form
+            onSubmit={handleSubmit}
+            noValidate
+            className="card p-8 text-left space-y-3.5 max-w-xl mx-auto"
+          >
+            <div className="grid sm:grid-cols-2 gap-3.5">
+              <div>
+                <label htmlFor="name" className="block text-xs mono text-[var(--muted)] mb-2">Name</label>
+                <input id="name" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required className="field" />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-xs mono text-[var(--muted)] mb-2">Email</label>
+                <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required className="field" />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-xs mono text-[var(--muted)] mb-2">Message</label>
+              <textarea id="message" name="message" value={form.message} onChange={handleChange} rows={4} placeholder="What's on your mind?" required className="field resize-none" />
+            </div>
+            <button
+              type="submit"
+              disabled={!isValid}
+              className={`w-full py-3 text-sm rounded-[12px] font-semibold flex items-center justify-center gap-2 transition-all duration-150 ${
+                isValid
+                  ? 'btn-primary'
+                  : 'bg-[var(--bg-elevated-2)] text-[var(--muted)] cursor-not-allowed'
+              }`}
+            >
+              {sent ? (<><Check className="w-4 h-4" /> Opening your email client…</>) : ('Send message')}
+              {!sent && <ArrowUpRight className="w-4 h-4" />}
+            </button>
+            <p className="text-xs text-[var(--muted)] text-center">
+              Opens your email client with this pre-filled — nothing is stored here.
+            </p>
+          </motion.form>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+==================== GitHub ====================
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { ArrowUpRight, GitBranch, Users, FolderGit2 } from 'lucide-react'
+import Reveal from './Reveal'
+
+const GITHUB_USER = 'KARTHIKKJ369'
+const ease = [0.23, 1, 0.32, 1] as const
+
+const featuredRepos = [
+  {
+    name: 'backwater_collision_avoidance',
+    description: 'Intelligent collision avoidance system combining trajectory prediction, real-time mapping, and distributed communication.',
+    url: 'https://github.com/KARTHIKKJ369/backwater_collision_avoidance',
+  },
+  {
+    name: 'portfolio',
+    description: 'This site — React, TypeScript, and Tailwind.',
+    url: 'https://github.com/KARTHIKKJ369/portfolio',
+  },
+]
+
+interface Stats {
+  publicRepos: number
+  followers: number
+  yearsActive: number
+}
+
+interface LangShare {
+  name: string
+  pct: number
+}
+
+const barColors = ['var(--accent)', 'var(--muted)', 'var(--border-strong)', 'var(--fg)', 'var(--muted-2)']
+
+export default function GitHub() {
+  const [stats, setStats] = useState<Stats | null>(null)
+  const [languages, setLanguages] = useState<LangShare[] | null>(null)
+  const [status, setStatus] = useState<'loading' | 'live' | 'error'>('loading')
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function load() {
+      try {
+        const [userRes, reposRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${GITHUB_USER}`, { signal: controller.signal }),
+          fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`, {
+            signal: controller.signal,
+          }),
+        ])
+
+        if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API request failed')
+
+        const user = await userRes.json()
+        const repos: Array<{ language: string | null; fork: boolean }> = await reposRes.json()
+
+        const createdYear = new Date(user.created_at).getFullYear()
+        setStats({
+          publicRepos: user.public_repos,
+          followers: user.followers,
+          yearsActive: Math.max(1, new Date().getFullYear() - createdYear),
+        })
+
+        const counts = new Map<string, number>()
+        repos
+          .filter((r) => !r.fork && r.language)
+          .forEach((r) => {
+            counts.set(r.language as string, (counts.get(r.language as string) ?? 0) + 1)
+          })
+
+        const total = [...counts.values()].reduce((a, b) => a + b, 0)
+        const top = [...counts.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5)
+          .map(([name, count]) => ({ name, pct: total ? Math.round((count / total) * 100) : 0 }))
+
+        setLanguages(top)
+        setStatus('live')
+      } catch {
+        setStatus('error')
+      }
+    }
+
+    load()
+    return () => controller.abort()
+  }, [])
+
+  return (
+    <section id="github" className="py-24">
+      <div className="container px-4">
+        <Reveal amount={0.5} className="flex items-end justify-between mb-12 flex-wrap gap-2">
+          <h2 className="text-3xl md:text-4xl font-semibold">Mostly public by habit.</h2>
+          {status !== 'error' && (
+            <span className="mono text-xs text-[var(--muted)] flex items-center gap-1.5">
+              <span className={`w-1.5 h-1.5 rounded-full bg-[var(--accent)] ${status === 'live' ? 'animate-pulse' : 'opacity-40'}`} />
+              {status === 'live' ? 'live from GitHub' : 'syncing…'}
+            </span>
+          )}
+        </Reveal>
+
+        {status === 'error' ? (
+          <p className="text-sm text-[var(--muted)] mb-10">
+            GitHub's public API is rate-limited and occasionally unavailable — the repos below are still
+            accurate; for live stats, see{' '}
+            <a href="https://github.com/KARTHIKKJ369" target="_blank" rel="noopener noreferrer" className="accent-text underline underline-offset-2">
+              the profile directly
+            </a>.
+          </p>
+        ) : (
+          <Reveal delay={0.05} className="grid sm:grid-cols-3 gap-4 mb-10">
+            <div className="card card-hover p-8 flex flex-col justify-between min-h-[132px]">
+              <div className="flex items-center justify-between">
+                <FolderGit2 className="w-4 h-4 text-[var(--muted)]" />
+                <span className="text-xs text-[var(--muted)]">public repos</span>
+              </div>
+              <div className="mono text-4xl font-medium">
+                {stats ? stats.publicRepos : <span className="text-[var(--muted)]">···</span>}
+              </div>
+            </div>
+            <div className="card card-hover p-8 flex flex-col justify-between min-h-[132px]">
+              <div className="flex items-center justify-between">
+                <Users className="w-4 h-4 text-[var(--muted)]" />
+                <span className="text-xs text-[var(--muted)]">followers</span>
+              </div>
+              <div className="mono text-4xl font-medium">
+                {stats ? stats.followers : <span className="text-[var(--muted)]">···</span>}
+              </div>
+            </div>
+            <div className="card card-hover p-8 sm:col-span-1 col-span-2 min-h-[132px]">
+              <div className="text-xs text-[var(--muted)] mb-4">top languages</div>
+              <div className="space-y-2.5">
+                {languages && languages.length > 0 ? (
+                  languages.map((lang, i) => (
+                    <div key={lang.name} className="flex items-center gap-3 text-xs">
+                      <span className="w-20 text-[var(--muted)] truncate flex-shrink-0">{lang.name}</span>
+                      <div className="flex-1 h-1.5 rounded-full bg-[var(--border)] overflow-hidden">
+                        <motion.div
+                          className="h-full rounded-full"
+                          style={{ background: barColors[i % barColors.length] }}
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${lang.pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.1 + i * 0.05, ease }}
+                        />
+                      </div>
+                      <span className="mono text-[var(--muted)] w-8 text-right flex-shrink-0">{lang.pct}%</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-xs text-[var(--muted)]">···</div>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        )}
+
+        <div className="max-w-2xl mb-10">
+          {featuredRepos.map((repo, i) => (
+            <motion.a
+              key={repo.name}
+              href={repo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease }}
+              className="group flex items-center justify-between gap-4 py-4 border-t border-[var(--border)] last:border-b"
+            >
+              <div className="flex items-start gap-3">
+                <GitBranch className="w-4 h-4 text-[var(--muted)] mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="font-mono text-sm font-medium">{repo.name}</span>
+                  <p className="text-sm text-[var(--muted)] mt-0.5">{repo.description}</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--fg)] transition-colors flex-shrink-0" />
+            </motion.a>
+          ))}
+        </div>
+
+        <a
+          href="https://github.com/KARTHIKKJ369"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
+        >
+          @KARTHIKKJ369 on GitHub
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
+      </div>
+    </section>
+  )
+}
+==================== Hero ====================
+import { useEffect, useState, lazy, Suspense } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, FileText } from 'lucide-react'
+import { heroRoles } from '../data'
+
+// Three.js is the single heaviest dependency in this project — split it into
+// its own chunk so it loads after the critical hero text/CTA has painted,
+// instead of blocking first contentful paint.
+const HeroMesh = lazy(() => import('./HeroMesh'))
+
+const ease = [0.23, 1, 0.32, 1] as const
+
+export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setRoleIndex((i) => (i + 1) % heroRoles.length), 2600)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <section id="hero" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+      <div className="container px-4 relative z-10">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease }}
+              className="mono text-sm text-[var(--muted)] mb-6"
+            >
+              Aluva, Kerala · B.Tech CSE '27
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.08, ease }}
+              className="text-5xl md:text-6xl lg:text-[5.2rem] font-semibold leading-[1.03] tracking-tight mb-5"
+            >
+              Karthik Jayan
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.16, ease }}
+              className="h-10 mb-6 overflow-hidden"
+            >
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={heroRoles[roleIndex]}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.4, ease }}
+                  className="text-xl md:text-2xl font-medium accent-text"
+                >
+                  {heroRoles[roleIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.24, ease }}
+              className="text-lg text-[var(--muted)] max-w-lg mb-10 leading-relaxed"
+            >
+              I build AI-native applications powered by retrieval, LLM agents, and modern web
+              technologies — from the pipeline underneath to the interface on top.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.32, ease }}
+              className="flex flex-wrap gap-3"
+            >
+              <a href="#projects" className="btn-primary inline-flex items-center gap-2 px-8 py-3.5 text-sm">
+                View projects
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center gap-2 px-8 py-3.5 text-sm">
+                <FileText className="w-4 h-4" />
+                Resume
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease }}
+            className="relative h-[380px] lg:h-[480px] hidden sm:block"
+          >
+            <Suspense fallback={<div className="w-full h-full" />}>
+              <HeroMesh />
+            </Suspense>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}

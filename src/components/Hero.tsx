@@ -1,86 +1,105 @@
-import { forwardRef } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { useEffect, useState, lazy, Suspense } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, FileText } from 'lucide-react'
+import { heroRoles } from '../data'
 
-const stack = ['Python', 'FastAPI', 'React', 'ESP32', 'LLMs / RAG']
+// Three.js is the single heaviest dependency in this project — split it into
+// its own chunk so it loads after the critical hero text/CTA has painted,
+// instead of blocking first contentful paint.
+const HeroMesh = lazy(() => import('./HeroMesh'))
 
-const Hero = forwardRef<HTMLElement>((_props, ref) => {
+const ease = [0.23, 1, 0.32, 1] as const
+
+export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setRoleIndex((i) => (i + 1) % heroRoles.length), 2600)
+    return () => clearInterval(id)
+  }, [])
+
   return (
-    <section ref={ref} id="hero" className="min-h-screen flex items-center pt-28 pb-20">
-      <div className="container px-4">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
+    <section id="hero" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+      <div className="container px-4 relative z-10">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
           <div>
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6, ease }}
               className="mono text-sm text-[var(--muted)] mb-6"
             >
-              B.Tech CSE, MACE '27 · Aluva, Kerala
+              Aluva, Kerala · B.Tech CSE '27
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.05 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight mb-6"
+              transition={{ duration: 0.7, delay: 0.08, ease }}
+              className="text-5xl md:text-6xl lg:text-[5.2rem] font-semibold leading-[1.03] tracking-tight mb-5"
             >
               Karthik Jayan
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.16, ease }}
+              className="h-10 mb-6 overflow-hidden"
+            >
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={heroRoles[roleIndex]}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.4, ease }}
+                  className="text-xl md:text-2xl font-medium accent-text"
+                >
+                  {heroRoles[roleIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.24, ease }}
               className="text-lg text-[var(--muted)] max-w-lg mb-10 leading-relaxed"
             >
-              CS undergraduate building backend systems, IoT devices, and LLM
-              applications — usually all three in the same project.
+              I build AI-native applications powered by retrieval, LLM agents, and modern web
+              technologies — from the pipeline underneath to the interface on top.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="flex flex-wrap gap-3 mb-12"
+              transition={{ duration: 0.5, delay: 0.32, ease }}
+              className="flex flex-wrap gap-3"
             >
-              <a href="#projects" className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm">
+              <a href="#projects" className="btn-primary inline-flex items-center gap-2 px-8 py-3.5 text-sm">
                 View projects
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#contact" className="btn-secondary inline-flex items-center px-6 py-3 text-sm">
-                Get in touch
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center gap-2 px-8 py-3.5 text-sm">
+                <FileText className="w-4 h-4" />
+                Resume
               </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-2"
-            >
-              {stack.map((item) => (
-                <span key={item} className="tag">{item}</span>
-              ))}
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="card p-6 mono text-sm text-[var(--muted)] leading-loose hidden sm:block"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease }}
+            className="relative h-[380px] lg:h-[480px] hidden sm:block"
           >
-            <p><span className="accent-text">&gt;</span> role: CS undergrad, MACE</p>
-            <p><span className="accent-text">&gt;</span> focus: AI · backend · IoT</p>
-            <p><span className="accent-text">&gt;</span> current: intern @ IIIT Kottayam</p>
-            <p><span className="accent-text">&gt;</span> homelab: Mac Mini M4, remote over Tailscale</p>
-            <p><span className="accent-text">&gt;</span> status: <span className="text-[var(--fg)]">building</span></p>
+            <Suspense fallback={<div className="w-full h-full" />}>
+              <HeroMesh />
+            </Suspense>
           </motion.div>
         </div>
       </div>
     </section>
   )
-})
-
-export default Hero
+}

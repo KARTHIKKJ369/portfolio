@@ -2,7 +2,7 @@
 
 Personal developer portfolio, built as a single-page React app.
 
-**Live site:** _add your Vercel URL here_
+**Live site:** https://portfolio-one-lemon-97.vercel.app/
 
 ## Tech stack
 

@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] py-8">
+    <footer className="border-t border-[var(--border)] py-6">
       <div className="container px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <span className="mono text-xs text-[var(--muted)]">
           © {new Date().getFullYear()} Karthik Jayan
