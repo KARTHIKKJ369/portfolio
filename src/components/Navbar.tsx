@@ -70,6 +70,7 @@ export default function Navbar({ scrolled }: NavbarProps) {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
+              aria-current={activeSection === item.id ? 'page' : undefined}
               className={`relative px-1 py-1 text-sm font-medium transition-colors ${
                 activeSection === item.id ? 'text-[var(--fg)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
               }`}
@@ -111,7 +112,13 @@ export default function Navbar({ scrolled }: NavbarProps) {
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
-          <button className="p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? 'Close menu' : 'Open menu'}>
+          <button
+            className="p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+          >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -120,6 +127,7 @@ export default function Navbar({ scrolled }: NavbarProps) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-menu"
             className="lg:hidden bg-[var(--bg)] border-t border-[var(--border)] px-4 pb-6 overflow-hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -131,6 +139,7 @@ export default function Navbar({ scrolled }: NavbarProps) {
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
+                  aria-current={activeSection === item.id ? 'page' : undefined}
                   className={`text-left px-2 py-2 font-medium transition-colors ${
                     activeSection === item.id ? 'text-[var(--fg)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
                   }`}
