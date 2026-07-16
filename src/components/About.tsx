@@ -26,9 +26,9 @@ export default function About() {
           </p>
         </Reveal>
 
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-14 items-start">
+        <div className="grid lg:grid-cols-[1.35fr_0.85fr] gap-14 items-start">
           {/* Terminal centerpiece — try "help" for a list of commands. */}
-          <Reveal direction="scale" delay={0.05} className="h-full">
+          <Reveal direction="scale" delay={0.05}>
             <Terminal />
 
             <div className="flex flex-wrap gap-2 mt-6">

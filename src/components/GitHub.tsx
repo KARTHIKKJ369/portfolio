@@ -9,7 +9,7 @@ const ease = [0.23, 1, 0.32, 1] as const
 const featuredRepos = [
   {
     name: 'backwater_collision_avoidance',
-    description: 'Intelligent collision avoidance system combining trajectory prediction, real-time mapping, and distributed communication.',
+    description: 'Two-node ESP32 + LoRa collision avoidance system with an LSTM trajectory predictor.',
     url: 'https://github.com/KARTHIKKJ369/backwater_collision_avoidance',
   },
   {
@@ -88,7 +88,7 @@ export default function GitHub() {
   return (
     <section id="github" className="py-24">
       <div className="container px-4">
-        <Reveal amount={0.5} className="flex items-end justify-between mb-16 flex-wrap gap-2">
+        <Reveal amount={0.5} className="flex items-end justify-between mb-12 flex-wrap gap-2">
           <h2 className="text-3xl md:text-4xl font-semibold">Mostly public by habit.</h2>
           {status !== 'error' && (
             <span className="mono text-xs text-[var(--muted)] flex items-center gap-1.5">
@@ -107,26 +107,26 @@ export default function GitHub() {
             </a>.
           </p>
         ) : (
-          <Reveal delay={0.05} className="grid sm:grid-cols-3 gap-5 mb-10 items-start">
-            <div className="card card-hover p-8 sm:p-9">
+          <Reveal delay={0.05} className="grid sm:grid-cols-3 gap-6 mb-10">
+            <div className="card card-hover py-7 px-8 flex flex-col justify-between min-h-[132px]">
               <div className="flex items-center justify-between">
                 <FolderGit2 className="w-4 h-4 text-[var(--muted)]" />
                 <span className="text-xs text-[var(--muted)]">public repos</span>
               </div>
-              <div className="mono text-4xl font-medium mt-8">
+              <div className="mono text-4xl font-medium">
                 {stats ? stats.publicRepos : <span className="text-[var(--muted)]">···</span>}
               </div>
             </div>
-            <div className="card card-hover p-8 sm:p-9">
+            <div className="card card-hover py-7 px-8 flex flex-col justify-between min-h-[132px]">
               <div className="flex items-center justify-between">
                 <Users className="w-4 h-4 text-[var(--muted)]" />
                 <span className="text-xs text-[var(--muted)]">followers</span>
               </div>
-              <div className="mono text-4xl font-medium mt-8">
+              <div className="mono text-4xl font-medium">
                 {stats ? stats.followers : <span className="text-[var(--muted)]">···</span>}
               </div>
             </div>
-            <div className="card card-hover p-8 sm:p-9 sm:col-span-1 col-span-2">
+            <div className="card card-hover py-7 px-8 sm:col-span-1 col-span-2 min-h-[132px]">
               <div className="text-xs text-[var(--muted)] mb-4">top languages</div>
               <div className="space-y-2.5">
                 {languages && languages.length > 0 ? (
@@ -165,13 +165,13 @@ export default function GitHub() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.4, delay: i * 0.06, ease }}
-              className="group flex items-center justify-between gap-5 py-7 border-t border-[var(--border)] last:border-b"
+              className="group flex items-center justify-between gap-4 py-4 border-t border-[var(--border)] last:border-b"
             >
               <div className="flex items-start gap-3">
-                <GitBranch className="w-4 h-4 text-[var(--muted)] mt-2 flex-shrink-0" />
+                <GitBranch className="w-4 h-4 text-[var(--muted)] mt-0.5 flex-shrink-0" />
                 <div>
                   <span className="font-mono text-sm font-medium">{repo.name}</span>
-                  <p className="text-sm text-[var(--muted)] mt-2">{repo.description}</p>
+                  <p className="text-sm text-[var(--muted)] mt-0.5">{repo.description}</p>
                 </div>
               </div>
               <ArrowUpRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--fg)] transition-colors flex-shrink-0" />

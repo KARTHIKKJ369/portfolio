@@ -12,7 +12,7 @@ export default function Education() {
           <h2 className="text-3xl md:text-4xl font-semibold mb-14">Education.</h2>
         </Reveal>
 
-        <div className="max-w-3xl space-y-4">
+        <div className="max-w-3xl space-y-6">
           {education.map((item, i) => (
             <motion.div
               key={item.title}

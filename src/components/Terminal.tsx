@@ -49,6 +49,7 @@ export default function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const nextId = () => ++idRef.current
+  const bootedRef = useRef(false)
 
   const push = (kind: Line['kind'], content: ReactNode) => {
     setLines((prev) => [...prev, { id: nextId(), kind, content }])
@@ -57,6 +58,10 @@ export default function Terminal() {
   const pushBlock = (content: ReactNode) => push('output', content)
 
   useEffect(() => {
+    // Guard against React.StrictMode's dev-only double-invoke of effects,
+    // which would otherwise print the welcome block twice on mount.
+    if (bootedRef.current) return
+    bootedRef.current = true
     pushBlock(<HelpBlock />)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -319,7 +324,7 @@ export default function Terminal() {
 
   return (
     <div
-      className="relative rounded-[28px] overflow-hidden border border-[var(--border)] bg-[var(--bg-elevated)] flex flex-col h-full min-h-[420px]"
+      className="relative rounded-[28px] overflow-hidden border border-[var(--border)] bg-[var(--bg-elevated)] flex flex-col h-[480px]"
       onClick={focusInput}
     >
       <div className="flex items-center gap-2 px-5 py-4 border-b border-[var(--border)] bg-[var(--bg-elevated-2)] flex-shrink-0">
@@ -329,7 +334,7 @@ export default function Terminal() {
         <span className="mono text-xs text-[var(--muted)] ml-3">karthik@portfolio — zsh</span>
       </div>
 
-      <div ref={scrollRef} className="mono text-[13px] leading-relaxed px-5 py-4 flex-1 overflow-y-auto">
+      <div ref={scrollRef} className="terminal-scroll mono text-[13px] leading-relaxed px-5 py-4 flex-1 min-h-0 overflow-y-auto">
         {lines.map((line) => (
           <div key={line.id} className={line.kind === 'input' ? 'text-[var(--fg)] mb-2' : 'text-[var(--fg)] mb-3'}>
             {line.content}
@@ -347,9 +352,8 @@ export default function Terminal() {
             autoFocus
             spellCheck={false}
             autoComplete="off"
-            className="flex-1 bg-transparent outline-none text-[var(--fg)] caret-transparent min-w-0"
+            className="flex-1 bg-transparent outline-none text-[var(--fg)] caret-[var(--accent)] min-w-0"
           />
-          <span className="w-2 h-4 bg-[var(--accent)] animate-pulse flex-shrink-0" />
         </form>
       </div>
     </div>
