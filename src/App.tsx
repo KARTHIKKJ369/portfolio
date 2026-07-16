@@ -21,9 +21,15 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <a
+        href="#main-content"
+        className="fixed top-0 left-0 z-[100] -translate-y-full focus:translate-y-0 bg-[var(--fg)] text-[var(--bg)] px-4 py-2 font-medium transition-transform duration-200"
+      >
+        Skip to main content
+      </a>
       <Navbar scrolled={scrolled} />
 
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <Skills />
