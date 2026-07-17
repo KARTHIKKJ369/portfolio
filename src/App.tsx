@@ -21,9 +21,12 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-[var(--bg)] focus:text-[var(--fg)] focus:font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">
+        Skip to content
+      </a>
       <Navbar scrolled={scrolled} />
 
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <Skills />
