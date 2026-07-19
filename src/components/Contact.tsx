@@ -45,22 +45,29 @@ export default function Contact() {
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-xs mono text-[var(--muted)] mb-2">Name</label>
-                <input id="name" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required className="field" />
+                <label htmlFor="name" className="block text-xs mono text-[var(--muted)] mb-2">
+                  Name <span className="accent-text" aria-hidden="true">*</span>
+                </label>
+                <input id="name" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required aria-required="true" className="field" />
               </div>
               <div>
-                <label htmlFor="email" className="block text-xs mono text-[var(--muted)] mb-2">Email</label>
-                <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required className="field" />
+                <label htmlFor="email" className="block text-xs mono text-[var(--muted)] mb-2">
+                  Email <span className="accent-text" aria-hidden="true">*</span>
+                </label>
+                <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required aria-required="true" className="field" />
               </div>
             </div>
             <div>
-              <label htmlFor="message" className="block text-xs mono text-[var(--muted)] mb-2">Message</label>
-              <textarea id="message" name="message" value={form.message} onChange={handleChange} rows={4} placeholder="What's on your mind?" required className="field resize-none" />
+              <label htmlFor="message" className="block text-xs mono text-[var(--muted)] mb-2">
+                Message <span className="accent-text" aria-hidden="true">*</span>
+              </label>
+              <textarea id="message" name="message" value={form.message} onChange={handleChange} rows={4} placeholder="What's on your mind?" required aria-required="true" className="field resize-none" />
             </div>
             <button
               type="submit"
               disabled={!isValid}
-              className={`w-full py-3.5 text-sm rounded-[12px] font-semibold flex items-center justify-center gap-2 transition-all duration-150 ${
+              title={!isValid ? "Please fill out all required fields" : undefined}
+              className={`w-full py-3.5 text-sm rounded-[12px] font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus-visible:ring-2 focus-visible:ring-[var(--accent)] outline-none ${
                 isValid
                   ? 'btn-primary'
                   : 'bg-[var(--bg-elevated-2)] text-[var(--muted)] cursor-not-allowed'
