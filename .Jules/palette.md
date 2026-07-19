@@ -1,0 +1,3 @@
+## 2025-07-19 - Visual Indicators for Required Form Fields
+**Learning:** Adding explicit visual cues (like an asterisk) to required form fields and helpful `title` text to disabled submit buttons significantly improves the user experience by providing clear expectations and context for mouse and keyboard users. Additionally, ensuring proper ARIA attributes (`aria-required` and `aria-hidden`) makes these cues accessible to screen reader users without redundant announcements.
+**Action:** Always include visual required indicators for required form fields, pair them with `aria-required="true"`, hide visual asterisks with `aria-hidden="true"`, and provide helpful context on disabled submit buttons (like tooltips or title text) while keeping them keyboard focusable.
